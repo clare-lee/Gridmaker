@@ -24,7 +24,22 @@ function addR() {
 }
 //Add a column
 function addC() {
-    alert("Clicked Add Col")
+    // get reference to grid
+    let grid = document.getElementById("grid")
+
+    // loop through all the rows
+    for(let i = 0; i < numRows; ++i) {
+        // retrieve child at i aka row
+        let row = grid.children[i]
+
+        // create table cell aka table definition aka td
+        let cell = document.createElement("td")
+        
+        // attach cell to row  
+        row.appendChild(cell)
+    }
+
+    numCols++
 }
 
 //Remove a row
