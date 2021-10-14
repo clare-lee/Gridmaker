@@ -44,10 +44,7 @@ function addC() {
 
 //Remove a row
 function removeR() {
-    if (numRows <= 0) {
-        alert("No Rows to remove")
-        return
-    }
+
     // get reference to grid
     let grid = document.getElementById("grid")
 
@@ -61,7 +58,23 @@ function removeR() {
 }
 //Remove a column
 function removeC() {
-    alert("Clicked Remove Col")
+
+    // get reference to grid
+    let grid = document.getElementById("grid")
+
+    // loop through all of the rows
+    for(let i = 0; i < numRows; ++i) {
+        // retrieve child at i which is a row
+        let row = grid.children[i]
+
+        // retrieve the last child in the row
+        let cell = row.children[numCols - 1]
+        
+        // remove cell from row  
+        cell.remove()
+    }
+
+    numCols--
 }
 //sets global var for selected color
 function selected(){
