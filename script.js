@@ -29,7 +29,7 @@ function addC() {
 
     // loop through all the rows
     for(let i = 0; i < numRows; ++i) {
-        // retrieve child at i aka row
+        // get child at i aka row
         let row = grid.children[i]
 
         // create table cell aka table definition aka td
@@ -44,7 +44,20 @@ function addC() {
 
 //Remove a row
 function removeR() {
-    alert("Clicked Remove Row")
+    if (numRows <= 0) {
+        alert("No Rows to remove")
+        return
+    }
+    // get reference to grid
+    let grid = document.getElementById("grid")
+
+    // get the last row in the grid
+    let row = grid.children[numRows - 1]
+
+    // remove the row
+    row.remove()
+    
+    numRows--
 }
 //Remove a column
 function removeC() {
