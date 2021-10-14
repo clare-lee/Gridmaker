@@ -2,6 +2,11 @@ let numRows = 0;
 let numCols = 0;
 let colorSelected; 
 
+// change color 
+function changeColor() {
+    this.style.backgroundColor = colorSelected
+}
+
 //Add a row
 function addR() {
     // get reference to grid
@@ -15,6 +20,9 @@ function addR() {
         // create table cell aka table definition aka td
         let cell = document.createElement("td")
         
+        // to allow color fill
+        cell.addEventListener("click", changeColor)
+
         // attach cell to row  
         row.appendChild(cell)
     }
@@ -27,13 +35,16 @@ function addC() {
     // get reference to grid
     let grid = document.getElementById("grid")
 
-    // loop through all the rows
+    // loop through all rows
     for(let i = 0; i < numRows; ++i) {
         // get child at i aka row
         let row = grid.children[i]
 
         // create table cell aka table definition aka td
         let cell = document.createElement("td")
+
+        // to allow color fill
+        cell.addEventListener("click", changeColor)
         
         // attach cell to row  
         row.appendChild(cell)
@@ -48,7 +59,7 @@ function removeR() {
     // get reference to grid
     let grid = document.getElementById("grid")
 
-    // get the last row in the grid
+    // get the last row in grid
     let row = grid.children[numRows - 1]
 
     // remove the row
@@ -62,12 +73,12 @@ function removeC() {
     // get reference to grid
     let grid = document.getElementById("grid")
 
-    // loop through all of the rows
+    // loop through all rows
     for(let i = 0; i < numRows; ++i) {
         // retrieve child at i which is a row
         let row = grid.children[i]
 
-        // retrieve the last child in the row
+        // get the last child in row
         let cell = row.children[numCols - 1]
         
         // remove cell from row  
@@ -83,7 +94,28 @@ function selected(){
 }
 
 function fill(){
-    alert("Clicked Fill All")
+    // Stop running the function if no cells exist
+    if (numRows <= 0 || numCols <= 0) {
+        return
+    }
+
+    // get reference to grid
+    let grid = document.getElementById("grid")
+
+    // loop through all rows
+    for(let i = 0; i < numRows; ++i) {
+        // retrieve child at i which is a row
+        let row = grid.children[i]
+
+        // loop through all cells
+        for(let j = 0; j < numCols; ++j) {
+            // get the last child in the row
+            let cell = row.children[j]
+            
+            // color cell
+            cell.style.backgroundColor = colorSelected
+        }
+    }
 }
 
 function clearAll(){
