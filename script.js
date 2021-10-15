@@ -75,7 +75,7 @@ function removeC() {
 
     // loop through all rows
     for(let i = 0; i < numRows; ++i) {
-        // get child at i which is a row
+        // get child at i aka row
         let row = grid.children[i]
 
         // get the last child in row
@@ -104,7 +104,7 @@ function fill(){
 
     // loop through all rows
     for(let i = 0; i < numRows; ++i) {
-        // get child at i which is a row
+        // get child at i aka row
         let row = grid.children[i]
 
         // loop through all cells
@@ -129,7 +129,7 @@ function clearAll(){
 
     // loop through all rows
     for(let i = 0; i < numRows; ++i) {
-        // get child at i which is a row
+        // get child at i aka row
         let row = grid.children[i]
 
         // loop through all cells
@@ -137,12 +137,35 @@ function clearAll(){
             // get the last child in row
             let cell = row.children[j]
             
-            // color cell
-            cell.style.backgroundColor = 'white'
+            // color cell blank
+            cell.style.backgroundColor = ""
         }
     }
 }
 
 function fillU(){
-    alert("Clicked Fill All Uncolored")
+    // Stop running the function if no cells exist
+    if (numRows <= 0 || numCols <= 0) {
+        return
+    }
+
+    // get reference to grid
+    let grid = document.getElementById("grid")
+
+    // loop through all rows
+    for(let i = 0; i < numRows; ++i) {
+        // get child at i aka row
+        let row = grid.children[i]
+
+        // loop through all cells
+        for(let j = 0; j < numCols; ++j) {
+            // get the last child in row
+            let cell = row.children[j]
+            
+            // color uncolored cell
+            if (cell.style.backgroundColor == "") {
+                cell.style.backgroundColor = colorSelected
+            }
+        }
+    }
 }
